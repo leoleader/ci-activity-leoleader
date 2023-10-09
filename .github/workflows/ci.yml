@@ -1,0 +1,30 @@
+name: CI Testing for Calculator
+
+
+on:
+  push:
+    branches: [ main ]
+  pull-request:
+    branches: [ main ]
+
+jobs:
+  do_the_build_please:
+  runs-on: ubuntu-20.04
+
+  steps:
+  - uses: actions/checkout@v3
+
+  - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.17.1
+          cache: npm
+
+  - name: Install deps
+    run: npm install
+
+  - name: Run all tests
+    run: npm run test
+  
+
+
